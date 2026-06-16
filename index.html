@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Independence Square — Chronicles & Directory</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&family=Playfair+Display:ital,wght=0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-brand">Independence Square</div>
+        
+        <ul class="nav-links">
+            <li><a href="#history-section">History</a></li>
+            <li><a href="#location-section">Location</a></li>
+            <li><a href="#trails-section">Pioneer Trails</a></li>
+            <li><a href="#routes-section">Curated Routes</a></li>
+            <li><a href="#directory-section">Square Directory</a></li>
+        </ul>
+
+        <button class="mobile-hamburger" id="mobileHamburger" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="mobile-fullscreen-menu" id="mobileNavPopup">
+            <div class="mobile-menu-header">
+                <button class="menu-close-btn" onclick="toggleMobileMenu()">×</button>
+                <div class="menu-brand-center">Independence Square</div>
+            </div>
+            
+            <div class="mobile-menu-content">
+                <ul class="mobile-main-links">
+                    <li><a href="#history-section" onclick="handleMobileLinkClick()">History Overview</a></li>
+                    <li><a href="#location-section" onclick="handleMobileLinkClick()">Geographic Location</a></li>
+                    <li><a href="#trails-section" onclick="handleMobileLinkClick()">The Three Trails</a></li>
+                    <li><a href="#routes-section" onclick="handleMobileLinkClick()">Curated Routes</a></li>
+                </ul>
+
+                <hr class="menu-divider">
+
+                <ul class="mobile-secondary-links">
+                    <li><a href="#directory-section" onclick="handleMobileLinkClick()"><span>Complete Directory</span> <span class="arrow">→</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="history-section">
+        <div class="hero-content scroll-reveal">
+            <span class="subtitle">The Living Pulse of American History</span>
+            <h1 class="title">Historic Independence Square</h1>
+            <p class="intro-text">
+                Founded in 1827, Independence Square is the historic heart of Independence, Missouri, acting as the structural anchor of Jackson County. During the 1800s, this urban core transformed into the ultimate outfitting terminal for America's westward expansion. Thousands of pioneers gathered here to assemble provisions, purchase freight wagons, and cross paths before advancing into uncharted territories. Having survived strategic urban battles during the American Civil War and serving as the foundational launchpad for President Harry S. Truman's legal and political career, the Square elegantly marries preservation with modern commerce.
+            </p>
+        </div>
+
+        <div class="metrics-bar scroll-reveal" id="metricsBar">
+            <div class="metric">
+                <span class="metric-number" data-target="1827">0</span>
+                <span class="metric-label">Founded</span>
+            </div>
+            <div class="metric">
+                <span class="metric-number" data-target="34">0</span>
+                <span class="metric-label">Historic Sites</span>
+            </div>
+            <div class="metric">
+                <span class="metric-number" data-target="3">0</span>
+                <span class="metric-label">Pioneer Trails</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="location-section" style="padding: 6rem 10% 2rem; background-color: var(--bg); text-align: center;">
+        <div class="scroll-reveal" style="max-width: 900px; margin: 0 auto;">
+            <h2 style="font-family: var(--font-serif); color: var(--accent); font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 700;">Geographic Location</h2>
+            <p style="color: var(--muted); font-size: 1.1rem; margin-bottom: 3rem;">Find where the historic paths meet at the crossroads of downtown Independence.</p>
+            
+            <iframe 
+                src="https://maps.google.com/maps?q=Jackson%20County%20Historic%20Truman%20Courthouse,%20Independence%20MO&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="450" 
+                style="border: 1px solid var(--gold); border-radius: 4px; box-shadow: 0 15px 35px rgba(4,19,52,0.08);" 
+                allowfullscreen="" 
+                loading="eager" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <section class="trails-section" id="trails-section">
+        <div class="section-header scroll-reveal">
+            <h2>The Three Pioneer Trails</h2>
+            <p>Explore the historic pathways that natively converged at the Square courtyard parameters.</p>
+        </div>
+        <div class="trails-grid">
+            <div class="trail-card scroll-reveal">
+                <div class="trail-media">
+                    <img src="images/santafe_trail.jpg" alt="Santa Fe Trail" onerror="this.style.background='linear-gradient(45deg, #b58913, #041334)'">
+                    <div class="trail-caption-overlay">The Santa Fe Trail Marker at the Jackson County Courthouse in Independence, Mo.</div>
+                </div>
+                <span class="trail-year">Established 1821</span>
+                <h3>The Santa Fe Trail</h3>
+                <p>Operating as a high-stakes commercial artery between Missouri and Mexican markets, this trail brought massive economic trade wealth directly to early Square merchants, outfitting heavy freight wagon trains packing out items across hazardous desert stretches.</p>
+                
+                <button class="trail-toggle-btn" aria-expanded="false" onclick="toggleTrailDropdown(this)">
+                    <span>Show Historic Milestones</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                
+                <div class="trail-details">
+                    <ul class="modal-bullet-list" style="margin-top: 1.5rem; gap: 0.75rem;">
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Commercial Lifeblood:</strong> Rather than family immigration, this was an aggressive international merchant highway trading manufactured goods for silver, mules, and high-value pelts.</li>
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Outfitting Engine:</strong> The Square served as the primary industrial staging ground where massive Conestoga and Murphy wagons were built, repaired, and structurally packed.</li>
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Plaza Marketplace:</strong> Frontier banks, blacksmith shops, and dry-goods warehouses on Liberty and Lexington streets boomed heavily due to cash flow passing through from international caravans.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trail-card scroll-reveal">
+                <div class="trail-media">
+                    <img src="images/oregon_trail.jpg" alt="Oregon Trail" onerror="this.style.background='linear-gradient(45deg, #b58913, #041334)'">
+                    <div class="trail-caption-overlay">The Oregon Trail Marker in Independence, Mo.</div> 
+                </div>
+                <span class="trail-year">Established 1841</span>
+                <h3>The Oregon Trail</h3>
+                <p>The definitive pathway of mass emigration traveled by pioneer families seeking agricultural fortunes in the Pacific Northwest. Families packed provisions, cattle, and survival kits right here in the historic district before braving a brutal 2,000-mile journey.</p>
+                
+                <button class="trail-toggle-btn" aria-expanded="false" onclick="toggleTrailDropdown(this)">
+                    <span>Show Historic Milestones</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                
+                <div class="trail-details">
+                    <ul class="modal-bullet-list" style="margin-top: 1.5rem; gap: 0.75rem;">
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Great Migration:</strong> Driven by the promise of free, highly fertile soil in the Willamette Valley, thousands of families gathered in Independence every spring.</li>
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Packing Ritual:</strong> Pioneers calculated precise multi-month rations here, buying thousands of pounds of flour, bacon, sugar, and structural tools required to build homesteads.</li>
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Landscape Crucible:</strong> Independence represented the last drop of security before families encountered dangerous river crossings, volatile weather, and mountain ranges.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trail-card scroll-reveal">
+                <div class="trail-media">
+                    <img src="images/california_trail.jpg" alt="California Trail" onerror="this.style.background='linear-gradient(45deg, #b58913, #041334)'">
+                    <div class="trail-caption-overlay">California Trail Map.</div> 
+                </div>
+                <span class="trail-year">Gold Rush 1849</span>
+                <h3>The California Trail</h3>
+                <p>Sparked by the historic gold discoveries at Sutter's Mill, this trail flooded the local municipal infrastructure with thousands of frantic "Forty-Niners". The Square became an intense outfitting marketplace for buyers seeking mulas, mutes, oxen, and rations to survive the Sierra Nevada lines.</p>
+                
+                <button class="trail-toggle-btn" aria-expanded="false" onclick="toggleTrailDropdown(this)">
+                    <span>Show Historic Milestones</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                
+                <div class="trail-details">
+                    <ul class="modal-bullet-list" style="margin-top: 1.5rem; gap: 0.75rem;">
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Gold Stampede:</strong> The discovery of gold instantly transformed the sleepy public square into a chaotic, high-energy global marketplace overnight.</li>
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Inflation Surge:</strong> High competition among desperate gold-seekers drove up the price of oxen, sturdy mutes, and canvas covers to unprecedented historical heights.</li>
+                        <li style="font-size: 0.88rem; color: var(--muted); padding-left:1.5rem;"><strong>The Race Against Winter:</strong> Travelers used the Square to complete emergency outfitting, racing to cross the deadly Sierra Nevada passes before heavy winter blizzards set in.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tracks-section" id="routes-section">
+        <div class="section-header scroll-reveal">
+            <h2>Curated Heritage Routes</h2>
+            <p>Click on an institutional pathway card below to launch an interactive, point-by-point timeline tour window.</p>
+        </div>
+        <div class="tracks-grid">
+            <div class="track-card scroll-reveal" onclick="launchTrack('track1')">
+                <div class="track-image" style="background-image: url('images/track1_bg.jpg');"></div>
+                <div class="track-content">
+                    <span class="track-number">01</span>
+                    <h3>District Foundations</h3>
+                    <p>Witness the civil security jail cells, political courtrooms, and oldest structural legal anchors surrounding the neighborhood.</p>
+                    <span class="explore-btn">Launch Timeline →</span>
+                </div>
+            </div>
+            <div class="track-card scroll-reveal" onclick="launchTrack('track2')">
+                <div class="track-image" style="background-image: url('images/track2_bg.jpg');"></div>
+                <div class="track-content">
+                    <span class="track-number">02</span>
+                    <h3>Different Trails View</h3>
+                    <p>Discover how Independence Square served as the primary transit outfitting point where legendary pioneer trails converged.</p>
+                    <span class="explore-btn">Launch Timeline →</span>
+                </div>
+            </div>
+            <div class="track-card scroll-reveal" onclick="launchTrack('track3')">
+                <div class="track-image" style="background-image: url('images/track3_bg.jpg');"></div>
+                <div class="track-content">
+                    <span class="track-number">03</span>
+                    <h3>Local Heritage & Flavors</h3>
+                    <p>Step straight inside authentic underground dining caverns and retro soda parlor points operational since frontier booms.</p>
+                    <span class="explore-btn">Launch Timeline →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="directory-section" id="directory-section">
+        <div class="section-header scroll-reveal">
+            <h2>The Complete Square Directory</h2>
+            <p>Filter or search dynamically through all architectural assets and retail points across the district grid.</p>
+        </div>
+        
+        <div class="directory-controls scroll-reveal">
+            <div class="search-wrapper">
+                <input type="text" id="dirSearch" class="directory-search-input" placeholder="Search buildings by name or address...">
+            </div>
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterCategory('all', this)">All Buildings</button>
+                <button class="filter-btn" onclick="filterCategory('historical', this)">Historical Heritage</button>
+                <button class="filter-btn" onclick="filterCategory('architecture', this)">Architecture & Design</button>
+                <button class="filter-btn" onclick="filterCategory('culinary', this)">Culinary & Tastings</button>
+                <button class="filter-btn" onclick="filterCategory('professional', this)">Services & Professional</button>
+            </div>
+        </div>
+
+        <div class="directory-grid" id="directoryGrid"></div>
+    </section>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-container" id="modalContainer" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalDynamicContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <strong>Independence Square — Chronicles & Directory</strong><br>
+        <span>Independence, Missouri · Jackson County Historic District</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
