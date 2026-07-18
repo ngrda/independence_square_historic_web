@@ -22,6 +22,12 @@
             <li><a href="#directory-section">Square Directory</a></li>
         </ul>
 
+        <div class="lang-switch" id="langSwitchDesktop">
+            <button class="lang-btn active" id="lang-en" onclick="setLanguage('en')">EN</button>
+            <span class="lang-divider">/</span>
+            <button class="lang-btn" id="lang-es" onclick="setLanguage('es')">ES</button>
+        </div>
+
         <button class="mobile-hamburger" id="mobileHamburger" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
             <span></span>
             <span></span>
@@ -45,9 +51,18 @@
                 <ul class="mobile-secondary-links">
                     <li><a href="#directory-section" onclick="handleMobileLinkClick()"><span>Complete Directory</span> <span class="arrow">→</span></a></li>
                 </ul>
+                <hr class="menu-divider">
+                <div class="lang-switch lang-switch-mobile" id="langSwitchMobile">
+                    <button class="lang-btn active" id="lang-en-mobile" onclick="setLanguage('en')">English</button>
+                    <span class="lang-divider">/</span>
+                    <button class="lang-btn" id="lang-es-mobile" onclick="setLanguage('es')">Español</button>
+                </div>
             </div>
         </div>
     </nav>
+
+    <!-- Hidden Google Translate widget, driven by the custom EN/ES buttons above -->
+    <div id="google_translate_element" style="display:none;"></div>
 
     <header class="hero-section" id="history-section">
         <div class="hero-content scroll-reveal">
@@ -59,8 +74,8 @@
         </div>
         <div class="metrics-bar scroll-reveal" id="metricsBar">
             <div class="metric"><span class="metric-number" data-target="1827">0</span><span class="metric-label">Founded</span></div>
-            <div class="metric"><span class="metric-number" data-target="34">0</span><span class="metric-label">Historic Sites</span></div>
             <div class="metric"><span class="metric-number" data-target="3">0</span><span class="metric-label">Pioneer Trails</span></div>
+            <div class="metric"><span class="metric-number" id="historicSitesMetric" data-target="34">0</span><span class="metric-label">Historic Sites</span></div>
         </div>
     </header>
 
@@ -215,5 +230,60 @@
     </footer>
 
     <script src="app.js"></script>
+
+    <!-- Language switcher: EN (default, real text) <-> ES (auto-translated) -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en', includedLanguages: 'es', autoDisplay: false },
+                'google_translate_element'
+            );
+        }
+
+        function getGoogTransCookie() {
+            const match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
+            return match ? decodeURIComponent(match[1]) : null;
+        }
+
+        function currentLanguage() {
+            const cookie = getGoogTransCookie();
+            return cookie && cookie.includes('/es') ? 'es' : 'en';
+        }
+
+        function clearGoogTransCookie() {
+            // Cookies must be cleared for every path/domain combination they could
+            // have been set on, or the old value keeps winning on reload.
+            const host = location.hostname;
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + host + ';';
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + host + ';';
+        }
+
+        function updateActiveButtons(lang) {
+            document.querySelectorAll('.lang-btn').forEach((btn) => btn.classList.remove('active'));
+            document.getElementById('lang-' + lang)?.classList.add('active');
+            document.getElementById('lang-' + lang + '-mobile')?.classList.add('active');
+        }
+
+        function setLanguage(lang) {
+            if (lang === currentLanguage()) return; 
+
+            if (lang === 'es') {
+                document.cookie = 'googtrans=/en/es; path=/;';
+            } else {
+                clearGoogTransCookie();
+            }
+            // A fresh load lets the widget translate the fully-rendered page
+            // in one consistent pass, instead of racing app.js's own DOM updates.
+            location.reload();
+        }
+
+        // Reflect the active language on the buttons as soon as the DOM is ready,
+        // without waiting on the (slower) Google script.
+        document.addEventListener('DOMContentLoaded', () => {
+            updateActiveButtons(currentLanguage());
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
