@@ -12,7 +12,7 @@
 <body>
 
     <nav class="main-nav" id="mainNav">
-        <div class="nav-brand">Independence Square</div>
+        <a href="#" class="nav-brand" onclick="resetToHome(); return false;">Independence Square</a>
         <ul class="nav-links">
             <li><a href="#" data-page="history-section" onclick="showPage('history-section'); return false;">History</a></li>
             <li><a href="#" onclick="goToHomeSection('location-section'); return false;">Location</a></li>
@@ -37,7 +37,7 @@
         <div class="mobile-fullscreen-menu" id="mobileNavPopup">
             <div class="mobile-menu-header">
                 <button class="menu-close-btn" onclick="toggleMobileMenu()">×</button>
-                <div class="menu-brand-center">Independence Square</div>
+                <a href="#" class="menu-brand-center" onclick="resetToHome(); handleMobileLinkClick(); return false;">Independence Square</a>
             </div>
             <div class="mobile-menu-content">
                 <ul class="mobile-fullscreen-links">
@@ -283,8 +283,6 @@
         }
 
         function clearGoogTransCookie() {
-            // Cookies must be cleared for every path/domain combination they could
-            // have been set on, or the old value keeps winning on reload.
             const host = location.hostname;
             document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + host + ';';
@@ -306,13 +304,9 @@
             } else {
                 clearGoogTransCookie();
             }
-            // A fresh load lets the widget translate the fully-rendered page
-            // in one consistent pass, instead of racing app.js's own DOM updates.
             location.reload();
         }
 
-        // Reflect the active language on the buttons as soon as the DOM is ready,
-        // without waiting on the (slower) Google script.
         document.addEventListener('DOMContentLoaded', () => {
             updateActiveButtons(currentLanguage());
         });
